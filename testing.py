@@ -1,8 +1,8 @@
-import keyboard
+def switch_to_english():
+    # Додайте код для зміни поточної мови на англійську тут
+    # Наприклад, ви можете змінити змінну, що містить поточну мову на 'english'
+    current_language = 'english'
+    print("Мова була змінена на англійську.")
 
-def on_key_event(e):
-    print(f"Key {e.name} {'pressed' if e.event_type == keyboard.KEY_DOWN else 'released'}")
-
-keyboard.hook(on_key_event)
-
-keyboard.wait('esc')
+# Приклад використання функції для зміни мови
+switch_to_english()

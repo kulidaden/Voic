@@ -1,7 +1,10 @@
 import pygame
 from playsound import playsound
 import sys
+import comtypes
+from queue import Queue
 import webbrowser
+import webbrowsers
 import os
 from pathlib import Path
 import subprocess
