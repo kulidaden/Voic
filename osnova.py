@@ -7,12 +7,23 @@ from functions import *
 from slowars import *
 from telebot import types
 import speech_recognition as sr
-recognizer = sr.Recognizer()
-load_dotenv()
-bot = telebot.TeleBot(os.getenv("BOT_TOKEN"))
+from telegram.ext import Updater, CommandHandler
+
 conn=sqlite3.connect("DataBase_V\\test.db", check_same_thread=False)
+cursor=conn.cursor()
+bot_token=cursor.execute('SELECT bot_token FROM tg_bot')
+res_bot_tok=cursor.fetchone()
+chat_id=cursor.execute('SELECT chat_id FROM tg_bot')
+res_chat_id=cursor.fetchone()
+bot = telebot.TeleBot(res_bot_tok[0])
+
+def hello():
+    bot.send_message(res_chat_id[0],'I`m here!')
+
 
 def mu():
+
+
     @bot.message_handler(func=lambda message: True)
     def starter(message):
         flag = 0
@@ -35,6 +46,9 @@ def mu():
 
         #інлайни музики
         if message.text == 'Музика🎧':
+            list_count=[]
+            for i in open_command_slowar('музика'):
+                list_count.append(i)
             markup_music=types.ReplyKeyboardMarkup()
             list_for_music=[i for i in open_command_slowar('музика')]
             for i in range(0,len(list_for_music), 3):
@@ -85,10 +99,9 @@ def mu():
                     flag=1
                 if flag == 0:
                     bot.send_message(message.chat.id, 'Unknown command')
-            except sr.UnknownValueError:
-                dontUnderstedebl()
             except sr.RequestError as e:
                 print(f"Ошибка при запросе к Google Web Speech API: {e}")
 
     bot.polling(none_stop=True)
+hello()
 mu()

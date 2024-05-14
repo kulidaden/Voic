@@ -6,7 +6,9 @@ import pythoncom
 import requests
 from bs4 import BeautifulSoup
 import pyautogui
+
 conn = sqlite3.connect('DataBase_V\\test.db', check_same_thread=False)
+
 class Foo:
     def __init__(self, message, command, file):
         self.message=message
@@ -16,7 +18,7 @@ class Foo:
 
     def open_item_on_desktop(self, message, command):
         message = message.replace(command, '').strip().title()
-
+        print(message)
         pythoncom.CoInitialize()
 
         cursor = conn.cursor()
@@ -49,16 +51,15 @@ class Foo:
                 except Exception as e:
                     print(f"Помилка при відкритті програми: {e}")
             else:
-                print("Файл не знайдено в базі даних")
+                print("Файл не знайдено в базі даних111")
         else:
             print("Програму не знайдено в базі даних")
 
-            # Пошук на робочому столі та в інших директоріях
             taskbar_path = os.path.join(os.getenv('APPDATA'), 'Microsoft', 'Internet Explorer', 'Quick Launch',
                                         'User Pinned', 'TaskBar')
             main_desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
             public_desktop_path = os.path.join(os.environ['PUBLIC'], "Desktop")
-            desktop_paths = [main_desktop_path, public_desktop_path, taskbar_path, 'D:\\', 'C:\\']
+            desktop_paths = [main_desktop_path, taskbar_path, public_desktop_path, 'D:\\', 'C:\\']
 
             for desktop_path in desktop_paths:
                 if os.path.exists(desktop_path):
@@ -66,6 +67,7 @@ class Foo:
                         for current_item_name in files + dirs:
                             current_item_path = os.path.join(root, current_item_name)
                             try:
+                                print(current_item_path)
                                 current_item_name_without_extension, current_item_extension = os.path.splitext(
                                     current_item_name.strip())
                                 if current_item_name_without_extension.lower() == message.lower():
@@ -78,7 +80,6 @@ class Foo:
 
                                     if os.path.isfile(item_to_open):
                                         os.startfile(item_to_open)
-                                        # Вставляйте в базу даних лише в разі успішного відкриття
                                         cmd1 = f'''INSERT INTO program (name, way) VALUES ('{message}','{root}')'''
                                         conn.execute(cmd1)
                                         conn.commit()
@@ -144,16 +145,22 @@ class Foo:
         result1 = result1
         print(result1)
     conn = sqlite3.connect('DataBase_V\\test.db', check_same_thread=False)
+
     def l(self, message, command):  # Передайте з'єднання як аргумент
         message = message.replace(command, "")
         self.message = message.replace(' ','')
         print(self.message)
         cursor = conn.cursor()
         cmd_url = 'SELECT url FROM links WHERE name=?'  # Використовуйте параметризований запит
+        print(cmd_url)
         cursor.execute(cmd_url, (self.message,))
+        print(11111)
         print(cursor)
+        print(111111)
         res = cursor.fetchone()
+        print(222222)
         print(res)
+        print(22222)
         if res:  # перевірка, чи результат існує
             res = res[0]  # перетворення кортежу на рядок
             res = res.translate(str.maketrans('', '', '()\'"'))  # видалення дужок та лапок
@@ -183,6 +190,7 @@ class Foo:
             keyboard.press_and_release('left windows+d')
         except:
             keyboard.press_and_release('left windows+в')
+
     # запис відео
     def scr_videos(self):
         keyboard.press_and_release('win+alt+r')
@@ -227,14 +235,16 @@ class Foo:
     def downi(self,name='нижче.txt'):
         pyautogui.scroll(-500)
 
-    def stop_all(self):
-        keyboard.press_and_release("ctrl+f5")
-
     def music(self):
-        pygame.init()
-        sound = pygame.mixer.Sound(f"музика\\{self.message}")
-        sound.play()
-
+        try:
+            pygame.mixer.stop()
+            pygame.init()
+            sound = pygame.mixer.Sound(f"музика\\{self.message}")
+            sound.play()
+        except:
+            pygame.init()
+            sound = pygame.mixer.Sound(f"музика\\{self.message}")
+            sound.play()
     def stop_music(self):
         try:
             pygame.mixer.stop()
@@ -247,7 +257,7 @@ class Foo:
 
         list_for_keyboard = [self.close, self.res_wkl, self.screen, self.scr_videos,self.open_wkl,self.close_wkl,
                              self.zverni, self.micro, self.valume_on,self.valume_off, self.upi,
-                             self.downi, self.chat_gpt,self.stop_all,self.music,self.stop_music]
+                             self.downi, self.chat_gpt,self.music,self.stop_music]
         txt = '.txt'
         for item in list_for_SCH_inPC:
             self.file=self.file.replace(txt, '')
