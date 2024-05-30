@@ -17,7 +17,7 @@ class Foo:
         self.listFoo()
 
     def open_item_on_desktop(self, message, command):
-        message = message.replace(command, '').strip().title()
+        message = message.replace(command, '').strip()
         print(message)
         pythoncom.CoInitialize()
 
@@ -29,12 +29,16 @@ class Foo:
         if result:
             program_path = result[0]  # Отримуємо шлях з результату запиту
 
-            zak = ['.lnk', '.exe', '.xlsx', '.txt', '.jpg', '.jpeg', '.png', '.gif', '.bmp', '.mp3', '.mp4', '.docx']
-
+            zak = ['.lnk', '.exe', '.xlsx', '.txt', '.jpg', '.jpeg', '.png', '.gif', '.bmp', '.mp3',
+                   '.mp4', '.docx','.pdf','.bat','.sh','.app','.jar','.doc','.rtf','.odt','.xls',
+                   '.csv','.ods','.ppt','.pptx','.odp','.tiff','.svg','.wav','.flac','.aac','.yaml',
+                   '.ogg','.avi','.mkv','.mov','.wmv','.zip','.rar','.tar','.gz','.7z','.json','.otf'
+                   '.py','.java','.cpp','.cs','.js','.html','.css','.ini','.cfg','.conf','.xml',
+                   '.yml','.sys','.dll','.drv','.dmg','.db','.sql','.mdb','.sqlite','.ttf','.woff',
+                   '.htm','.php','.asp','.iso','.md','.log','.bak','.tmp']
             file_path = None
             for i in zak:
                 current_path = os.path.join(program_path, f'{message}{i}')
-
                 if os.path.exists(current_path):
                     file_path = current_path
                     break  # Вийти з циклу, якщо знайдено файл
@@ -149,25 +153,25 @@ class Foo:
     def l(self, message, command):  # Передайте з'єднання як аргумент
         message = message.replace(command, "")
         self.message = message.replace(' ','')
-        print(self.message)
+        print(self.message,1)
         cursor = conn.cursor()
         cmd_url = 'SELECT url FROM links WHERE name=?'  # Використовуйте параметризований запит
-        print(cmd_url)
+        print(cmd_url,2)
         cursor.execute(cmd_url, (self.message,))
-        print(11111)
+        print(3)
         print(cursor)
-        print(111111)
+        print(4)
         res = cursor.fetchone()
-        print(222222)
-        print(res)
-        print(22222)
+        print(5)
+        print(res,6)
+        print(7)
         if res:  # перевірка, чи результат існує
             res = res[0]  # перетворення кортежу на рядок
             res = res.translate(str.maketrans('', '', '()\'"'))  # видалення дужок та лапок
-            print(res)
+            print(res,8)
             webbrowser.open(res)
         else:
-            print("URL not found")
+            print("URL not found",9)
 
     def res_wkl(self):
         keyboard.press_and_release('ctrl+shift+t')
@@ -239,12 +243,13 @@ class Foo:
         try:
             pygame.mixer.stop()
             pygame.init()
-            sound = pygame.mixer.Sound(f"музика\\{self.message}")
+            sound = pygame.mixer.Sound(f"музика\\{self.message}.mp3")
             sound.play()
         except:
             pygame.init()
-            sound = pygame.mixer.Sound(f"музика\\{self.message}")
+            sound = pygame.mixer.Sound(f"музика\\{self.message}.mp3")
             sound.play()
+
     def stop_music(self):
         try:
             pygame.mixer.stop()
@@ -262,19 +267,19 @@ class Foo:
         for item in list_for_SCH_inPC:
             self.file=self.file.replace(txt, '')
             if item.__name__==self.file:
-                print('файл= '+self.file)
+                print(item.__name__,'файл= '+self.file)
                 self.open_item_on_desktop(self.message,self.command)
                 break
         for item in list_for_Searc_in_Internet:
             self.file=self.file.replace(txt, '')
             if item.__name__==self.file:
-                print('файл= '+self.file)
+                print(item.__name__,'файл= '+self.file)
                 item(self.message,self.command)
                 break
         for item in list_for_keyboard:
             self.file=self.file.replace(txt, '')
             if item.__name__==self.file:
-                print('файл= '+self.file)
+                print(item.__name__,'файл= '+self.file)
                 item()
                 break
 

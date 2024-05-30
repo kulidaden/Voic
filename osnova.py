@@ -43,16 +43,12 @@ def mu():
             markup_first.row(*rows)
         bot.send_message(message.chat.id,'do',reply_markup=markup_first)
 
-
         #інлайни музики
         if message.text == 'Музика🎧':
-            list_count=[]
-            for i in open_command_slowar('музика'):
-                list_count.append(i)
             markup_music=types.ReplyKeyboardMarkup()
             list_for_music=[i for i in open_command_slowar('музика')]
             for i in range(0,len(list_for_music), 3):
-                row=[types.KeyboardButton(mus_button) for mus_button in list_for_music[i:i+3]]
+                row=[types.KeyboardButton(mus_button.replace('.mp3','')) for mus_button in list_for_music[i:i+3]]
                 markup_music.row(*row)
             bot.send_message(message.chat.id, 'music', reply_markup=markup_music)
             flag=1
@@ -82,7 +78,7 @@ def mu():
                 list_for_programs.append(row[0])
             print(list_for_programs)
             for i in range(0, len(list_for_programs),4):
-                rows=[types.KeyboardButton('Відкрити '+button) for button in list_for_programs[i:i+4]]
+                rows=[types.KeyboardButton('Відкрий '+button) for button in list_for_programs[i:i+4]]
                 markup_prog.row(*rows)
             bot.send_message(message.chat.id, 'programs', reply_markup=markup_prog)
 
@@ -97,10 +93,11 @@ def mu():
                 else:
                     do_command()
                     flag=1
-                if flag == 0:
-                    bot.send_message(message.chat.id, 'Unknown command')
+                flag=1
             except sr.RequestError as e:
                 print(f"Ошибка при запросе к Google Web Speech API: {e}")
+            if flag == 0:
+                bot.send_message(message.chat.id, 'Unknown command')
 
     bot.polling(none_stop=True)
 hello()
