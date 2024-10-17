@@ -2,7 +2,7 @@
 ## Telegram_Bot
 Тут ви можете використовувати телеграм бота в якості помічника з дистанційного керування комп'ютором. Для цього достатньо зайти в телеграм(з телефону, наприклад), написати, що вам потрібно(типу відкрий ютуб музику) і він це зробить, поки ви йдете до своєї кімнати.
 
-# Інсталяція.
+# Інсталяція
 1. Клонуйте репозиторій: `git clone https://github.com/kulidaden/Voic.git`
 2. Зайдіть в папку 'Voic' ( `cd Voic` ) -> `pip install -r requirements.txt`
 Потрібно зайти в телеграм, та знайти чат з @BotFather та написати наступно команди: /newbot -> (даєте назву боту) -> (даєте другу назву боз з закінчкнням _bot) -> берете з повідомлення ключ(наприклад: 7256435231:AAG3vTo73s6fx3TbQlHHMgCXwFtnj22OlZs).
@@ -18,7 +18,7 @@
 ## Telegram_Bot
 Here you can use the Telegram bot as an assistant for remote computer control.  To do this, it is enough to go to Telegram, write what you need (like open YouTube music) and he will do it while you go to your room.
 
-# Installation.
+# Installation
 1. Clone the repository: `git clone https://github.com/kulidaden/Voic.git`
 2. Go to the 'Voic' folder ( `cd Voic` ) -> `pip install -r requirements.txt`
 You need to go to Telegram, find a chat with @BotFather and write the following commands: /newbot -> (give the name of the bot) -> (give the second bot name ending with _bot) -> take the key from the message (for example: 7256435231:AAG3vTo73s6fx3TbQlHHMgCXwFtnj22OlZs).
