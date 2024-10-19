@@ -34,8 +34,17 @@ Here you can use the Telegram bot as an assistant for remote computer control.  
 # Installation
 1. Clone the repository: `git clone https://github.com/kulidaden/Voic.git`
 2. Go to the 'Voic' folder ( `cd Voic` ) -> `pip install -r requirements.txt`
-You need to go to Telegram, find a chat with @BotFather and write the following commands: /newbot -> (give the name of the bot) -> (give the second bot name ending with _bot) -> take the key from the message (for example: 7256435231:AAG3vTo73s6fx3TbQlHHMgCXwFtnj22OlZs).
-Now this key must be inserted into the test database (database), tg_bot (table), bot_token (column), write down the data (save).  To access the database, while in the 'Voic' file, write the command -> `cd DataBase_V` and open the test database.  After the completed operation, run the osvana.py file.
+3. You need to go to Telegram and find a chat with @BotFather and write the following commands:
+4. `/newbot`
+5. (give the name of the bot)
+6. (give the bot a second name with the ending `_bot')
+7. take the key from the message (for example: `7256435231:AAG3vTo73s6fx3TbQlHHMgCXwFtnj22OlZs`).
+8. Now this key must be inserted into the database
+  1. test (database),
+  2. tg_bot(table),
+  3. bot_token(column),
+  4. record the data (save).
+ 9. To enter the database, go to the `DataBase_V` folder and open the `test` database.  After the operation, run the `osnova.py` file.
    
 ## Usage
 After starting, you will receive a message from the bot that you did not search for it.  Now you can write your commands to it.
