@@ -47,7 +47,7 @@ Here you can use the Telegram bot as an assistant for remote computer control.  
  9. To enter the database, go to the `DataBase_V` folder and open the `test` database.  After the operation, run the `osnova.py` file.
    
 ## Usage
-After starting, you will receive a message from the bot that you did not search for it.  Now you can write your commands to it.
+After launch, you will receive a message from the bot so that you do not look for it.  Now you can write your commands to it.
 
 ## Contact
 If you need advice or help using the program: Telegram: @DeLemse
