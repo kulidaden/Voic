@@ -40,10 +40,10 @@ Here you can use the Telegram bot as an assistant for remote computer control.  
 6. (give the bot a second name with the ending `_bot')
 7. take the key from the message (for example: `7256435231:AAG3vTo73s6fx3TbQlHHMgCXwFtnj22OlZs`).
 8. Now this key must be inserted into the database
-  1. test (database),
-  2. tg_bot(table),
-  3. bot_token(column),
-  4. record the data (save).
+   1.test (database),
+   2. tg_bot(table),
+   3. bot_token(column),
+   4. record the data (save).
  9. To enter the database, go to the `DataBase_V` folder and open the `test` database.  After the operation, run the `osnova.py` file.
    
 ## Usage
