@@ -1,13 +1,6 @@
-import sqlite3
-import time
-import keyboard
-import pygame
-from sound import *
 from functions import *
-from slowars import *
 from telebot import types
 import speech_recognition as sr
-from telegram.ext import Updater, CommandHandler
 
 conn=sqlite3.connect("DataBase_V\\test.db", check_same_thread=False)
 cursor=conn.cursor()
@@ -17,13 +10,12 @@ chat_id=cursor.execute('SELECT chat_id FROM tg_bot')
 res_chat_id=cursor.fetchone()
 bot = telebot.TeleBot(res_bot_tok[0])
 
+
 def hello():
     bot.send_message(res_chat_id[0],'I`m here!')
 
 
-def mu():
-
-
+def start():
     @bot.message_handler(func=lambda message: True)
     def starter(message):
         flag = 0
@@ -98,7 +90,6 @@ def mu():
                 print(f"Ошибка при запросе к Google Web Speech API: {e}")
             if flag == 0:
                 bot.send_message(message.chat.id, 'Unknown command')
-
     bot.polling(none_stop=True)
 hello()
-mu()
+start()
