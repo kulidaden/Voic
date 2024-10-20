@@ -2,7 +2,7 @@
   <img width="450px" height='250px' src="./teleBot.png" align="center" alt="Telegram_Bot" />
   <h2 align="center">🤖Telegram Bot🤖</h2>
 </p>
-Тут ви можете використовувати телеграм бота в якості помічника з дистанційного керування комп'ютором. Для цього достатньо зайти в телеграм(з телефону, наприклад), написати, що вам потрібно(типу відкрий ютуб музику) і він це зробить, поки ви йдете до своєї кімнати.
+Тут ви можете використовувати телеграм бота в якості помічника з дистанційного керування комп'ютором. Для цього достатньо зайти в телеграм(з телефону, наприклад), написати, що вам потрібно(типу відкрий Telegram) і він це зробить, поки ви йдете до своєї кімнати.
 
 # Інсталяція
 1. Клонуйте репозиторій: `git clone https://github.com/kulidaden/Voic.git`;
@@ -29,7 +29,7 @@
   <img width="450px" height='250px' src="./teleBot.png" align="center" alt="Telegram_Bot" />
   <h2 align="center">🤖Telegram Bot🤖</h2>
 </p>
-Here you can use the Telegram bot as an assistant for remote computer control.  To do this, it is enough to go to Telegram, write what you need (like open YouTube music) and he will do it while you go to your room.
+Here you can use the Telegram bot as an assistant for remote computer control.  To do this, it is enough to go to Telegram, write what you need (like open Telegram) and he will do it while you go to your room.
 
 # Installation
 1. Clone the repository: `git clone https://github.com/kulidaden/Voic.git`;
