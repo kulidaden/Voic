@@ -25,6 +25,8 @@
 ## Контакт
 Якщо Вам потрібна консультація або допомога по використанні програми: Telegram: @DeLemse
 
+##
+
 <p align="center">
   <img width="450px" height='250px' src="./teleBot.png" align="center" alt="Telegram_Bot" />
   <h2 align="center">🤖Telegram Bot🤖</h2>
