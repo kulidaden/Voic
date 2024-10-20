@@ -2,6 +2,7 @@ from functions import *
 from telebot import types
 import speech_recognition as sr
 
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 conn=sqlite3.connect("DataBase_V\\test.db", check_same_thread=False)
 cursor=conn.cursor()
 bot_token=cursor.execute('SELECT bot_token FROM tg_bot')
@@ -76,7 +77,7 @@ def start():
 
         else:
             try:
-                print(f'Розпізнаний текст: {message.text}')
+                print(f'Розпізнаний текст: {message.text}', flush=True)
                 for i in list_for_inl:
                     if message.text in i:
                         do_command()
@@ -87,7 +88,7 @@ def start():
                     flag=1
                 flag=1
             except sr.RequestError as e:
-                print(f"Ошибка при запросе к Google Web Speech API: {e}")
+                print(f"Помилка при запиті к Google Web Speech API: {e}")
             if flag == 0:
                 bot.send_message(message.chat.id, 'Unknown command')
     bot.polling(none_stop=True)

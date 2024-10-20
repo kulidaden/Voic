@@ -6,6 +6,7 @@ from queue import Queue
 import webbrowser
 import webbrowsers
 import os
+import io
 from pathlib import Path
 import subprocess
 import glob

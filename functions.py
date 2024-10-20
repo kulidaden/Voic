@@ -51,14 +51,12 @@ class Foo:
             if file_path:
                 try:
                     os.startfile(file_path)
-                    print(f"Відкрито програму: {file_path}")
+                    print(f"Відкрито програму: {file_path}", flush=True)
                 except Exception as e:
-                    print(f"Помилка при відкритті програми: {e}")
+                    print(f"Помилка при відкритті програми: {e}", flush=True)
             else:
-                print("Файл не знайдено в базі даних111")
+                print("Файл не знайдено в базі даних!")
         else:
-            print("Програму не знайдено в базі даних")
-
             taskbar_path = os.path.join(os.getenv('APPDATA'), 'Microsoft', 'Internet Explorer', 'Quick Launch',
                                         'User Pinned', 'TaskBar')
             main_desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
@@ -93,8 +91,8 @@ class Foo:
                                         print(f"Не вдається відкрити {message}. Файл не знайдено.")
                                         return
                             except Exception as e:
-                                print(f"Помилка відкриття {message}: {e}")
-            print(f"{message} не знайдено на робочому столі або в директоріях C або D.")
+                                print(f"Помилка відкриття {message}: {e}", flush=True)
+            print(f"{message} не знайдено на робочому столі або в директоріях C або D.", flush=True)
 
     def search_in_youtube(self,message, command):
         curssor=conn.cursor()
@@ -105,19 +103,19 @@ class Foo:
         url = "https://www.youtube.com/results?search_query=" + '+' + result1
         search_results = list(search(url, num_results=10, lang='uk'))
         for link in search_results:
-            print("Посилання:", link)
+            print("Посилання:", link, flush=True)
             try:
                 response = requests.get(link)
                 soup = BeautifulSoup(response.text, 'html.parser')
                 text_under_link = soup.get_text().strip()
                 if text_under_link.strip():
-                    print("Текст під посиланням:", text_under_link[:60])
+                    print("Текст під посиланням:", text_under_link[:60], flush=True)
                     ins_url_name=(f'''INSERT INTO links (url, name) VALUES ('{link}','{text_under_link[:60]}') ''')
                     conn.execute(ins_url_name)
                     conn.commit()
 
             except Exception as e:
-                print("Не вдалося зчитати текст під посиланням:", e)
+                print("Не вдалося зчитати текст під посиланням:", e, flush=True)
         webbrowser.open(url)
         result1 = result1
         print(result1)
@@ -131,20 +129,20 @@ class Foo:
         url = "https://www.google.com/search?q=" + '+' + result1
         search_results = list(search(url, num_results=10, lang='uk'))
         for link in search_results:
-            print("Посилання:", link)
+            print("Посилання:", link, flush=True)
             try:
                 response = requests.get(link)
                 soup = BeautifulSoup(response.text, 'html.parser')
                 text_under_link = soup.get_text().strip().replace(' ','')
                 text_under_link = text_under_link.replace('\n','')
                 if text_under_link.strip():
-                    print("Текст під посиланням:", text_under_link[:60])
+                    print("Текст під посиланням:", text_under_link[:60], flush=True)
                     ins_url_name=(f'''INSERT INTO links (url, name) VALUES ('{link}','{text_under_link[:60]}') ''')
                     conn.execute(ins_url_name)
                     conn.commit()
 
             except Exception as e:
-                print("Не вдалося зчитати текст під посиланням:", e)
+                print("Не вдалося зчитати текст під посиланням:", e, flush=True)
         webbrowser.open(url)
         result1 = result1
         print(result1)
@@ -216,7 +214,7 @@ class Foo:
             mute_state = not mute_state
             volume.SetMute(mute_state, None)
         else:
-            print("Не вдалося знайти пристрій виведення звуку.")
+            print("Не вдалося знайти пристрій виведення звуку!", flush=True)
 
     def valume_off(self):
         mute_state = False
@@ -228,7 +226,7 @@ class Foo:
             mute_state = not mute_state
             volume.SetMute(mute_state, None)
         else:
-            print("Не вдалося знайти пристрій виведення звуку.")
+            print("Не вдалося знайти пристрій виведення звуку!", flush=True)
 
     def chat_gpt(self,name='чат_gpt.txt'):
         webbrowser.open("https://chat.openai.com/")
@@ -300,7 +298,7 @@ def open_command_slowar(folder_path):
         files_in_folder = os.listdir(folder_path)
         return files_in_folder
     except Exception as e:
-        print(f"Сталася помилка: {e}")
+        print(f"Сталася помилка: {e}", flush=True)
         return []
 
 
